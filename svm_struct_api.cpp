@@ -101,8 +101,8 @@ CONSTSET    init_struct_constraints(SAMPLE sample, STRUCTMODEL *sm,
   else { /* add constraints so that all learned weights are
             positive. WARNING: Currently, they are positive only up to
             precision epsilon set by -e. */
-    c.lhs=my_malloc(sizeof(DOC *)*sizePsi);
-    c.rhs=my_malloc(sizeof(double)*sizePsi);
+    c.lhs=static_cast<DOC**>(my_malloc(sizeof(DOC *)*sizePsi));
+    c.rhs=static_cast<double*>(my_malloc(sizeof(double)*sizePsi));
     for(i=0; i<sizePsi; i++) {
       words[0].wnum=i+1;
       words[0].weight=1.0;
